@@ -35,11 +35,20 @@ class CalculatorTest {
   }
 
   @Test
-  void testNewLineSeparator() {
+  void testNewLineDelimiter() {
     String testString = "1\n2,3";
 
     var result = calculator.add(testString);
 
     assertThat(result).isEqualTo(6);
+  }
+
+  @Test
+  void testCustomDelimiter() {
+    String testString = "\\\\;\n1;2\n3,4";
+
+    var result = calculator.add(testString);
+
+    assertThat(result).isEqualTo(10);
   }
 }
