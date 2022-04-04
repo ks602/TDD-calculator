@@ -33,4 +33,13 @@ class CalculatorTest {
 
     assertThat(result).isEqualTo(0);
   }
+
+  @Test
+  void testNewLineSeparator() {
+    String testString = "1\n2,3";
+
+    var result = calculator.add(testString);
+
+    assertThat(result).isEqualTo(6);
+  }
 }
