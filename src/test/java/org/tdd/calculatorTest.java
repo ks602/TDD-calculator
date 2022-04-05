@@ -1,7 +1,6 @@
 package org.tdd;
 
 import org.junit.jupiter.api.Test;
-import org.tdd.Exceptions.NotANumberException;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -60,5 +59,23 @@ class CalculatorTest {
 
     assertThatThrownBy(() -> calculator.add(testString))
         .isInstanceOf(NumberFormatException.class);
+  }
+
+  @Test
+  void testSingleLongDelimiter() {
+    String testString = "\\\\[***]\n1,2***3\n4";
+
+    var result = calculator.add(testString);
+
+    assertThat(result).isEqualTo(10);
+  }
+
+  @Test
+  void testMultipleLongDelimiter() {
+    String testString = "\\\\[***][%]\n1,2%3\n4***5,6";
+
+    var result = calculator.add(testString);
+
+    assertThat(result).isEqualTo(21);
   }
 }
