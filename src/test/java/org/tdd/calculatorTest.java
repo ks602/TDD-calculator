@@ -1,6 +1,8 @@
 package org.tdd;
 
 import org.junit.jupiter.api.Test;
+import org.tdd.Exceptions.NotANumberException;
+
 import static org.assertj.core.api.Assertions.*;
 
 class CalculatorTest {
@@ -50,5 +52,13 @@ class CalculatorTest {
     var result = calculator.add(testString);
 
     assertThat(result).isEqualTo(10);
+  }
+
+  @Test
+  void testNanInput() {
+    String testString = "1,a,2";
+
+    assertThatThrownBy(() -> calculator.add(testString))
+        .isInstanceOf(NumberFormatException.class);
   }
 }
